@@ -6,16 +6,18 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "type": "module",
   "author": "sinofine",
   "license": "AGPL-3.0",
-  "type": "module",
-  "module": "esnext",
   "dependencies": {
+    "@types/glob": "^8.1.0",
+    "@types/node": "^20.2.1",
+    "@vercel/node": "^2.14.3",
     "dice-coefficient": "^2.1.1",
     "fix-esm": "^1.0.1",
     "jsdom": "^22.0.0",
     "NeteaseCloudMusicApi": "^4.8.10",
     "qq-music-api": "github:qheartq616/QQMusicApi#903038d325e5a10d37780b356b383eed09988a11",
-    "vercel": "^23.1.2"
+    "vercel": "^29.3.6"
   }
 }
