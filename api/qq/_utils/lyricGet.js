@@ -1,22 +1,7 @@
-import { get } from 'https';
+import { getter } from "../../_utils/getter.js";
 import qrcParser from "./qrcParser.js";
-import process from 'process';
 import qrcToArr from './qrcToArr.js';
-process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = "0";
 import { JSDOM } from "jsdom";
-async function getter(url) {
-    return new Promise((resolve, reject) => {
-        get(url, (res) => {
-            if (res.statusCode !== 200)
-                reject(new Error("Bad Request:" + res.statusCode));
-            let data = "";
-            res.setEncoding("utf8");
-            res.on("data", chunks => data += chunks)
-                .on("end", () => resolve(data))
-                .on("error", (err) => reject(err));
-        });
-    });
-}
 export async function lyricGet(id) {
     let res = await getter("https://c.y.qq.com/qqmusic/fcgi-bin/lyric_download.fcg?musicid=" + id + "&version=15&miniversion=82&lrctype=4");
     let dom = new JSDOM(res.slice("<!--".length, res.length - "-->".length).replace(/<miniversion="1" \/>|<!\[CDATA\[|\]\]\>/g, '')).window.document;
