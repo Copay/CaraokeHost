@@ -1,4 +1,6 @@
 ## CaraokeHost
+Alternative Lyric Frontend of several lyric providers.
+
 Author Sinofine
 
 This tool is intended for use with [Caraoke](https://github.com/MoePlayer/Caraoke) and [Caraoke Plasmoid](https://github.com/Copay/caraoke-plasmoid).
