@@ -1,5 +1,4 @@
 import qm from 'qq-music-api'
-//import { diceCoefficient as dc } from 'dice-coefficient'
 import {env} from 'process'
 const dc = require("fix-esm").require("dice-coefficient").diceCoefficient
 qm.setCookie(env['QQCOOKIE'])
