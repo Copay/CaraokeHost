@@ -1,9 +1,6 @@
 import qm from 'qq-music-api';
 import { env } from 'process';
 import { diceCoefficient as dc } from 'dice-coefficient';
-// import { createRequire } from "module";
-// const require = createRequire(import.meta.url);
-// const dc = require("fix-esm").require("dice-coefficient").diceCoefficient;
 qm.setCookie(env['QQCOOKIE']);
 export default async function searcher(name, singer, album, length, pageNo = 1, pageSize = 10) {
     let mix = (a) => {
