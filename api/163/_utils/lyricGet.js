@@ -1,7 +1,8 @@
 import ncm from "NeteaseCloudMusicApi";
 import { krcToArr, yrcToArr } from "../_utils/lyricToArr.js";
+import { json2ttml } from "../../_utils/generalParser.js";
 
-export async function lyricGet(id) {
+export async function lyricGet(id, format) {
     try {
         let lrcObj = (await ncm.lyric_new({id})).body
         let [lyric,
@@ -20,7 +21,7 @@ export async function lyricGet(id) {
                 lrcObj?.tlyric?.lyric || null,
                 lrcObj?.romalrc?.lyric || null
             ]
-        return ({ lyric, lyricTranslated, lyricRomaji, oldLyric, oldLyricTranslated, oldLyricRomaji })
+        return format === "ttml" ? {lyric: json2ttml({ lyric, lyricTranslated, lyricRomaji})} : ({ lyric, lyricTranslated, lyricRomaji, oldLyric, oldLyricTranslated, oldLyricRomaji })
     } catch (e) {
         console.error(e)
     }

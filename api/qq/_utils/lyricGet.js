@@ -1,8 +1,9 @@
+import { json2ttml } from "../../_utils/generalParser.js";
 import { getter } from "../../_utils/getter.js";
 import qrcParser from "./qrcParser.js";
 import qrcToArr from './qrcToArr.js';
 import { JSDOM } from "jsdom";
-export async function lyricGet(id) {
+export async function lyricGet(id, format) {
     let res = await getter("https://c.y.qq.com/qqmusic/fcgi-bin/lyric_download.fcg?musicid=" + id + "&version=15&miniversion=82&lrctype=4");
     let dom = new JSDOM(res.slice("<!--".length, res.length - "-->".length).replace(/<miniversion="1" \/>|<!\[CDATA\[|\]\]\>/g, '')).window.document;
     let val = ["content", "contentts", "contentroma"];
@@ -11,7 +12,7 @@ export async function lyricGet(id) {
         lyric = qrcToArr(lyric);
     if (lyricRomaji)
         lyricRomaji = qrcToArr(lyricRomaji);
-    return ({
+    return format === "ttml" ? {lyric:json2ttml({lyric, lyricTranslated, lyricRomaji})}:({
         lyric, lyricTranslated, lyricRomaji
     });
 }
